@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     #Local apps
     'users',
-    'departments'
+    'staff'
 ]
 
 MIDDLEWARE = [
