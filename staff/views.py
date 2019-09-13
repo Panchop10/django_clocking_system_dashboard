@@ -8,6 +8,8 @@ from django.urls import reverse_lazy
 # Models
 from staff.models import Employee, Timeclock
 
+# User modules
+from staff.services import get_clocking_information
 
 class SearchView(LoginRequiredMixin, ListView):
     """Returns all employee."""
@@ -30,5 +32,5 @@ class DetailView(LoginRequiredMixin, DetailView):
         """add employee's records to context."""
         context = super().get_context_data(**kwargs)
         user = self.get_object()
-        context['records'] = Timeclock.objects.filter(employee=user.id).order_by('-clocking_time')
+        context['records'] = get_clocking_information(user.id)
         return context

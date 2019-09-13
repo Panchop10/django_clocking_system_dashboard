@@ -15,85 +15,74 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-md-6" style="text-align: left;">
-					<h4>August</h4>
-				</div>
-				<div class="col-md-6" style="text-align: right;">
-					<h5>Total Monthly:
-					   <td>00:02:27</td>
-				   </h5>
-				</div>
-			</div>
+			{% for year, data_year in records.items %}
+				{% for month, data_month in data_year.items %}
+					{# BEGINNING OF MONTH #}
 
-		    <div class="row">
-				<div class="col-md-6" style ="text-align: left; font-size:0.8em; padding-top: 0.1em;">
-				    <table class="table table-bordered table-sm">
-			            <thead>
-			                <tr>
-			                    <th scope="col"> Check In</td>
-			                    <th scope="col">Check Out</td>
-			                    <th scope="col">Total</td>
-			                </tr>
-			            </thead>
+					<div class="row">
+						<div class="col-md-6" style="text-align: left;">
+							<h4>{{ month }}</h4>
+						</div>
+						<div class="col-md-6" style="text-align: right;">
+							<h5>Total Monthly:
+							   <td>{{ data_month.total }}</td>
+						   </h5>
+						</div>
+					</div>
 
-			            <tbody>
-			                <tr>
-			                    <td scope="row">9:00</td>
-			                    <td>17:00</td>
-			                    <td>8:00</td>
+					<div class="row mb-20">
+						<div class="col-md-6" style ="text-align: left; font-size:0.8em; padding-top: 0.1em;">
+							<table class="table table-bordered table-sm">
+								<thead>
+									<tr>
+										<th scope="col"> Check In</td>
+										<th scope="col">Check Out</td>
+										<th scope="col">Total</td>
+									</tr>
+								</thead>
 
-			                </tr>
-			                <tr>
-			                    <td scope="row">9:00</td>
-			                    <td>17:00</td>
-			                    <td>8:00</td>
+								<tbody>
+									{% for register in data_month.registers  %}
+										<tr>
+											{% for r in register %}
+											   <td>{{ r }}</td>
+											{% endfor %}
 
-			                </tr>
-			                <tr>
-			                    <td scope="row">9:00</td>
-			                    <td>17:00</td>
-			                    <td>8:00</td>
-			                </tr>
-			            </tbody>
-			        </table>
-			    </div>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
 
-			    <div class = "col-md-6" style = "text-align:left; font-size: 0.8em;">
+						<div class = "col-md-6" style = "text-align:left; font-size: 0.8em;">
 
-				    <table class="table table-bordered table-sm">
-			            <thead>
-			                <tr>
-			                    <th scope="col">Day</td>
-			                    <th scope="col">Total Worked</td>
-			                </tr>
-			            </thead>
+							<table class="table table-bordered table-sm">
+								<thead>
+									<tr>
+										<th scope="col">Day</td>
+										<th scope="col">Total Worked</td>
+									</tr>
+								</thead>
 
-			            <tbody>
-			                <tr>
-			                    <td scope="row">30/08/2019</td>
-			                    <td>00:02:27</td>
+								<tbody>
+									{% for register in data_month.daily  %}
+										<tr>
+											{% for d in register %}
+											   <td>{{ d }}</td>
+											{% endfor %}
+
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					{# END OF MONTH #}
+				{% endfor %}
+			{% endfor %}
 
 
-			                </tr>
-			                <tr>
-			                    <td scope="row">30/08/2019</td>
-			                    <td>00:02:27</td>
-			                </tr>
-			                <tr>
-			                    <td scope="row">30/08/2019</td>
-			                    <td>00:02:27</td>
-			                </tr>
-			            </tbody>
-			        </table>
-			    </div>
-	  		</div>
+
 		</div>
 	</div>
-
-	{{ records }}
-
-
-
-
 </body>

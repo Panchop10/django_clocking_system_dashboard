@@ -41,8 +41,9 @@ class Timeclock(models.Model):
 
     def __str__(self):
         """Return employee and clocking time."""
-        return '{} {}: {}'.format(\
+        return '{} {}: {} {}'.format(\
             self.id,\
             self.employee,\
-            self.clocking_time\
+            self.clocking_time,\
+            self.clock_status
         )
